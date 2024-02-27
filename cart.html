@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Website infomation -->
+    <title>Táo Thơm | Táo giá thơm</title>
+    <link rel="shortcut icon" href="image/Logo/Apple_Store_logo.svg.png" type="image/x-icon">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AngularJS -->
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="js/data.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="navItem">
+            <div>
+                <div class="container pt-3 " style="font-size: medium; text-decoration: none;">
+                    <span><a href="index.html" style="text-decoration: none; color: gray;">Trang chủ</a> ></span>
+                    <span" style="text-decoration: none; color: gray;">Giỏ hàng</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nội dung trang web -->
+        <div class="container mt-3 border-1 rounded-3" style="max-width: 600px; background-color: rgb(245, 245, 245);">
+            <div class="headerTitle text-center">
+                <h2 class="pt-3">Giỏ hàng của bạn</h2>
+            </div>
+            <hr>
+            <div class="Item" ng-repeat="item in ListItems">
+                <div class="row">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-3">
+                        <img class="justify-content-center" src="image/Product/{{item.img}}" alt=""
+                            style="max-width: 100px;">
+                    </div>
+                    <div class="col-6">
+                        <h5 class="mt-2">{{item.name}}</h5>
+                        <p class="mt-4" style="font-size: large;">{{item.price | number: 0 }} VNĐ</p>
+                    </div>
+                    <div class="col-2">
+                        <button class="bg-transparent w-50 border-0 mt-2" ng-click="remove()"><span
+                                class="bi bi-trash"></span></button>
+                        <p type="number" class="mt-3" style="width: 80%;" value="1">SL: {{item.quanlity}}</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="mt-4">
+                <div class="titleSale">
+                    <h5><span class="bi bi-gift"></span> Chương trình khuyến mãi</h5>
+                    <ul>
+                        <li style="font-size: smaller;">Nhận ngay ưu đãi YouTube Premium dành cho chủ sở hữu Samsung
+                            Galaxy (Mã quà tặng một số sản phẩm có thể hết trước khi kết thúc chương trình, click
+                            vào link để xem thời gian cụ thể)
+                        </li>
+                        <li style="font-size: smaller;">Trả góp 12 tháng 0 lãi, 0đ trả trước qua Samsung Finance+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-9">
+                    <h5>Tạm tính</h5>
+                    <p style="color: red; font-weight: bold;">{{total | number: 0}} VNĐ</p>
+                </div>
+                <div class="col-3 mb-3">
+                    <a href="#!/cart/payment">
+                      <button class="w-100 h-100 border-0 rounded-3 bg-danger text-white">Mua Ngay</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- Angular Script-->
+    <script>
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<style>
+    #itemShow {
+        height: 200px;
+        width: 100%;
+        min-height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #itemShow img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    #itemShow1 {
+        height: 280px;
+        width: 100%;
+        min-height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #itemShow1 img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    #itemShow1-group:hover img,
+    #itemShow1-group:hover h6 {
+        transform: scale(1.1);
+        color: rgb(255, 179, 92);
+    }
+
+
+    .card-group a {
+        text-decoration: none;
+    }
+
+    .checkbox-round {
+        width: 1.3em;
+        height: 1.3em;
+        background-color: white;
+        border-radius: 50%;
+        vertical-align: middle;
+        border: 1px solid #ddd;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .checkbox-round:checked {
+        appearance: auto;
+        clip-path: circle(50% at 50% 50%);
+        background-color: rgb(0, 0, 114);
+    }
+</style>
+
+</html>

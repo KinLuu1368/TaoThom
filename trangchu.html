@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Website infomation -->
+    <title>Táo Thơm | Táo giá thơm</title>
+    <link rel="shortcut icon" href="image/Logo/Apple_Store_logo.svg.png" type="image/x-icon">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AngularJS -->
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
+    <script src="js/data.js"></script>
+</head>
+
+<body>
+    <main ng-app="myApp">
+        <!--Panel quảng cáo-->
+        <div class="container mt-3" ng-controller="carouselController">
+            <!--carousel-->
+            <div id="carouselExampleCaptions" class="carousel slide carousel-dark" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}"
+                        ng-repeat="item in carouselItems track by $index" ng-class="{'active': $index === 0}"
+                        aria-current="true" aria-label="Slide {{ $index + 1 }}"></button>
+                </div>
+                <div class="carousel-inner" style="background-image: linear-gradient(aliceblue, white)"
+                    data-bs-interval="1000">
+                    <div class="carousel-item" ng-class="{'active': $index === 0}"
+                        ng-repeat="item in carouselItems track by $index">
+                        <img ng-src="{{ item.image }}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!--Danh mục phân phối-->
+        <div class="container border rounded-5 mt-4"
+            style="background-image: linear-gradient(rgb(255, 194, 130), rgb(255, 220, 155))">
+            <!--jumbotron-->
+            <div class="row align-items-md-stretch" ng-controller="nav-controller">
+                <div class="h-100 p-4 rounded-3 text-center">
+                    <h2>DÒNG SẢN PHẨM ĐANG PHÂN PHỐI</h2>
+                    <div class="card-group mb-3">
+                        <div class="col-md-2 col-xs-4 m-3" ng-repeat="item in mainItems">
+                            <a href="#!/category/{{item.type}}">
+                                <div class="card border-0 border rounded-4">
+                                    <div class="card-body" id="itemShow">
+                                        <img src="image/Product/{{item.img}}" alt="">
+                                    </div>
+                                    <div class="card-footer text-muted text-center bg-transparent border border-0">
+                                        <h5>{{item.name}}</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Sản phẩm-->
+        <div class="container border rounded-5 mt-4"
+            style="background-image: linear-gradient( rgb(222, 239, 255), white)">
+            <div class="row align-items-md-stretch" ng-controller="item-controller">
+                <div class="h-100 p-5 rounded-3 text-center">
+                    <h2>iPhone New VNA</h2>
+                    <div class="card-group mb-3">
+                        <div class="row">
+                            <div class="col-sm-3 col-6" ng-repeat="item in items | limitTo: 4" ng-if="item.type === 'iPhone'">
+                                <div class="card border rounded-4" id="itemShow1-group">
+                                    <a href="#!/detail/iPhone/{{$index}}">
+                                        <div class="card-body" id="itemShow1">
+                                            <img src="image/Product/{{item.img}}" alt="">
+                                        </div>
+                                        <div class="card-footer text-muted text-center bg-transparent border border-0"
+                                            id="itemShow1-footer">
+                                            <h6>Apple {{item.name}}</h6>
+                                            <p style="color: red; font-weight: bold;">{{item.price| number: 0}} VND</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="#!/category/iPhone">
+                            <button class="btn btn-warning px-4 mt-4 text-white" type="button">
+                                Xem tất cả
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Sản phẩm-->
+        <div class="container">
+            <div class="row align-items-md-stretch mt-2" ng-controller="item-controller">
+                <div class="h-100 p-5 rounded-3">
+                    <h2>iPad New VNA</h2>
+                    <div class="card-group mb-3">
+                        <div class="row">
+                            <div class="col-sm-3 col-6" ng-repeat="item in items |  filter: {type: 'iPad'}"
+                                ng-if="$index < 4">
+                                <div class="card border rounded-4" id="itemShow1-group">
+                                    <a href="#!/detail/iPad/{{$index}}">
+                                        <div class="card-body" id="itemShow1">
+                                            <img src="image/Product/{{item.img}}" alt="">
+                                        </div>
+                                        <div class="card-footer text-muted text-center bg-transparent border border-0"
+                                            id="itemShow1-footer">
+                                            <h6>Apple {{item.name}}</h6>
+                                            <p style="color: red; font-weight: bold;">{{item.price| number: 0}} VND
+                                            <p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-center">
+                        <a href="#!/category/iPad">
+                            <button class="btn btn-warning px-4 mt-4 text-white" type="button">
+                                Xem tất cả
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Sản phẩm-->
+        <div class="container p-1 w-100">
+            <div class="row align-items-md-stretch mt-2" ng-controller="item-controller">
+                <div class="h-100 p-5 rounded-3">
+                    <h2>Macbook New CPO</h2>
+                    <div class="card-group mb-3">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-6 col-6" ng-repeat="item in items |  filter: {type: 'macbook'}"
+                                ng-if="$index < 4">
+                                <div class="card border rounded-4" id="itemShow1-group">
+                                    <a href="#!/detail/macbook/{{$index}}">
+                                        <div class="card-body" id="itemShow1">
+                                            <img src="image/Product/{{item.img}}" alt="">
+                                        </div>
+                                        <div class="card-footer text-muted text-center bg-transparent border border-0"
+                                            id="itemShow1-footer">
+                                            <h6>Apple {{item.name}}</h6>
+                                            <p style="color: red; font-weight: bold;">{{item.price| number: 0}} VND</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-center">
+                        <a href="#!/category/macbook">
+                            <button class="btn btn-warning px-4 mt-4 text-white" type="button">
+                                Xem tất cả
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Sản phẩm-->
+        <div class="container p-1 w-100 mt-0">
+            <div class="row align-items-md-stretch mt-2" ng-controller="item-controller">
+                <div class="h-100 p-5 rounded-3">
+                    <h2>Phụ kiện chính hãng</h2>
+                    <div class="card-group mb-3">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-6 col-6" ng-repeat="item in items |  filter: {type: 'acc'}"
+                                ng-if="$index < 4">
+                                <div class="card border rounded-4" id="itemShow1-group">
+                                    <a href="#!/detail/acc/{{$index}}">
+                                        <div class="card-body" id="itemShow1">
+                                            <img src="image/Product/{{item.img}}" alt="">
+                                        </div>
+                                        <div class="card-footer text-muted text-center bg-transparent border border-0"
+                                            id="itemShow1-footer">
+                                            <h6>{{item.name}}</h6>
+                                            <p style="color: red; font-weight: bold;">{{item.price|number: 0}} VND</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-center">
+                        <a href="#!/category/acc">
+                            <button class="btn btn-warning px-4 mt-4 text-white" type="button">
+                                Xem tất cả
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!--Tin tức-->
+        <div class="container mb-0 mt-0 p">
+            <div class="row align-items-md-stretch mt-2" ng-controller="news-controller">
+                <div class="h-100 p-5 rounded-3">
+                    <h3>Bài viết mới</h3>
+                    <div class="card-group mb-3">
+                        <div class="row">
+                            <div class="col-sm-4 mb-3 col-6" ng-repeat="item in items" ng-if="$index < 6"
+                                style="cursor: pointer;">
+                                <a href="#!/tintuc/{{$index}}">
+                                    <div class="card border border-0">
+                                        <div class="card-body m-0 p-0">
+                                            <img src="image/News/{{item.img}}" class="w-100">
+                                        </div>
+                                        <div class="card-footer bg-transparent border border-0 mt-2  p-0">
+                                            <p style="font-size: smaller; font-weight: bold;">{{item.title}}</p>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p style="font-size: small; color: gray;"><span
+                                                            class="bi bi-calendar"></span>{{item.date}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p style="font-size: small; color: gray;"><span
+                                                            class="bi bi-eye"></span>{{item.view}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <hr>
+
+
+    <!-- Nội dung trang web -->
+
+    <!-- Angular Script-->
+    <script>
+        var app = angular.module("myApp", []);
+        /* Điều khiển quảng cáo */
+        app.controller("carouselController", function ($scope) {
+            $scope.carouselItems = carouselItems;
+        });
+
+        /* Đổ dữ liệu nav-items */
+        app.controller('nav-controller', function ($scope) {
+            $scope.mainItems = mainItems;
+        });
+
+        /* Đổ dữ liệu điện thoại*/
+        app.controller('item-controller', function ($scope) {
+            $scope.items = items;
+        });
+
+        /* Đổ bài viết*/
+        app.controller('news-controller', function ($scope) {
+            $scope.items = news;
+        });
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<style>
+    #itemShow {
+        height: 200px;
+        width: 100%;
+        min-height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #itemShow img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    #itemShow1 {
+        height: 280px;
+        width: 100%;
+        min-height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #itemShow1 img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    #itemShow1-group:hover img,
+    #itemShow1-group:hover h6 {
+        transform: scale(1.1);
+        color: rgb(255, 179, 92);
+    }
+
+
+    .card-group a {
+        text-decoration: none;
+    }
+
+    /*Footer*/
+    .foot-pd-li li {
+        margin-bottom: 20px;
+        font-size: small;
+    }
+
+    .foot-pd-li li a {
+        text-decoration: none;
+        color: gray;
+    }
+
+    .foot-pd-li li a:hover {
+        color: rgb(74, 74, 74);
+    }
+</style>
+
+</html>

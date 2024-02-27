@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Website infomation -->
+    <title>Táo Thơm | Táo giá thơm</title>
+    <link rel="shortcut icon" href="image/Logo/Apple_Store_logo.svg.png" type="image/x-icon">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- AngularJS -->
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/datatintuc.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-sanitize.js"></script>
+</head>
+
+<body>
+    <main ng-app="myApp">
+        <!-- Nội dung trang web -->
+        <div class="container w-100">
+            <div id="carouselExampleAutoplaying" class="carousel slide mx-auto mt-4" style="width: 95%;"
+                data-bs-ride="carousel">
+                <div class="carousel-inner" data-bs-interval="100">
+                    <div class="carousel-item active">
+                        <img src="image/AD/1008.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image/AD/1007.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+            <!-- nav -->
+            <div ng-controller="item-controller">
+                <div class="container pt-3 " style="font-size: medium; text-decoration: none;">
+                    <span><a href="index.html" style="text-decoration: none; color: gray;">Trang chủ</a> ></span>
+                    <span" style="text-decoration: none; color: gray;">Tin tức</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="news" ng-repeat="item in news" ng-show="$index === {{index}}">
+                        <div class="show">
+                            <div class="title mb-3">
+                                <h2>{{item.title}}</h2>
+                            </div>
+
+                            <div class="mt-2">
+                                <span><span class="bi bi-pencil-square"></span> {{item.author}}</span>
+                                <span class="mx-4"><span class="bi bi-calendar"></span> {{item.date}}</span>
+                            </div>
+
+                            <div style="background-color: rgb(235, 235, 235);" class="border rounded-3 my-4">
+                                <span style="font-size: 50px; color: orangered;" class="mx-4 mb-0">"</span>
+                                <p class="text-center">Táo Thơm Mobile tự hào là cửa hàng bán lẻ hàng công nghệ chính
+                                    hãng, với độ uy tín được duy trì và phát triển</p>
+                            </div>
+
+                            <div class="bodyNews p-3" style="border: 1px solid gainsboro;">
+                                <div class="text-center my-3">
+                                    <img src="image/{{item.image}}" style="width: 100%;" alt="">
+                                </div>
+
+                                <div class="TitleHeading">
+                                    <h4>{{item.headingTitle}}</h4>
+                                </div>
+                                <div class="Heading" style="text-align: justify;">
+                                    <p>{{item.heading}}</p>
+                                </div>
+                                <div class="TitleBody">
+                                    <h4>{{item.bodyTitle}}</h4>
+                                </div>
+                                <div class="body" style="text-align: justify;">
+                                    <p>{{item.body}}</p>
+                                </div>
+                                <div>
+                                    <h3>Thông tin liên hệ</h3>
+                                    <p>Giờ làm việc: <strong>Thứ 2 đến Thứ 6</strong> (9:00-17h30), <strong>Thứ
+                                            7</strong> (9:00 -16:00)</p>
+                                    <p>Hotline mua hàng: <strong>03347.10.393</strong></p>
+                                    <p>Email liên hệ: <strong>luukien323@gmail.com</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Sản phẩm liên quan-->
+                    <div class="container mt-3 mb-4 border rounded-4" style="background-image: linear-gradient(to right,rgb(255, 137, 137),rgb(214, 159, 255),rgb(82, 82, 245));">
+                        <div class="row">
+                            <div class="mt-4 mb-3">
+                                <h2>Sản phẩm liên quan</h2>
+                                <div class="card-group mb-3 mt-4">
+                                    <div class="row">
+                                        <div class="col-sm-4 mb-1" ng-repeat="item in items"
+                                            ng-if="$index < 3">
+                                            <div class="card border rounded-4" id="itemShow1-group">
+                                                <div class="card-body" id="itemShow1">
+                                                    <img src="image/Product/{{item.img}}" alt="">
+                                                </div>
+                                                <div class="card-footer text-muted text-center bg-transparent border border-0"
+                                                    id="itemShow1-footer">
+                                                    <h6>{{item.name}}</h6>
+                                                    <p style="color: red; font-weight: bold;">{{item.price|number: 0}}
+                                                        VND</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div>
+                        <h5>Tin tức mới</h5>
+                        <div class="thumb-news">
+                            <div class="row mb-3" ng-repeat="item in news">
+                                <div class="col-5">
+                                    <fieldset>
+                                        <img src="image/{{item.image}}" style="width: 100%; height: 100%;"
+                                            class="img-thumbnail">
+                                    </fieldset>
+                                </div>
+                                <div class="col-7">
+                                    <a id="thumb-title" href="" class="m-0 p-0">{{item.title}}</a> <br>
+                                    <span style="font-size: small;">Author: {{item.author}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5>Thông tin bán hàng mới</h5>
+                        <div class="thumb-news">
+                            <div class="row mb-3" ng-repeat="item in news">
+                                <div class="col-5">
+                                    <fieldset>
+                                        <img src="image/{{item.image}}" style="width: 100%; height: 100%;"
+                                            class="img-thumbnail">
+                                    </fieldset>
+                                </div>
+                                <div class="col-7">
+                                    <a id="thumb-title" href="" class="m-0 p-0">{{item.title}}</a> <br>
+                                    <span style="font-size: small;">Author: {{item.author}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Nội dung trang web -->
+
+    <!-- Angular Script-->
+    <script>
+        var app = angular.module("myApp", []);
+        /* Điều khiển quảng cáo */
+        app.controller("carouselController", function ($scope) {
+            $scope.carouselItems = carouselItems;
+        });
+
+        /* Đổ dữ liệu nav-items */
+        app.controller('nav-controller', function ($scope) {
+            $scope.mainItems = mainItems;
+        });
+
+        /* Đổ dữ liệu điện thoại*/
+        app.controller('item-controller', function ($scope) {
+            $scope.items = items;
+        });
+
+        /* Đổ Tiêu đề*/
+        app.controller('news-controller', function ($scope) {
+            $scope.items = news;
+        });
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<style>
+    #itemShow {
+        height: 200px;
+        width: 100%;
+        min-height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #itemShow img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    #itemShow1 {
+        height: 280px;
+        width: 100%;
+        min-height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #itemShow1 img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    #itemShow1-group:hover img,
+    #itemShow1-group:hover h6 {
+        transform: scale(1.1);
+        color: rgb(255, 179, 92);
+    }
+
+
+    .card-group a {
+        text-decoration: none;
+    }
+
+    .img-thumbnail {
+        height: 90px;
+        width: 100%;
+        max-height: 90px;
+        max-width: 100%;
+    }
+
+    #thumb-title {
+        font-size: small;
+        text-decoration: none;
+        color: gray;
+        text-align: justify;
+    }
+
+    #thumb-title:hover {
+        color: orange;
+    }
+
+    /*Footer*/
+    .foot-pd-li li {
+        margin-bottom: 20px;
+        font-size: small;
+    }
+
+    .foot-pd-li li a {
+        text-decoration: none;
+        color: gray;
+    }
+
+    .foot-pd-li li a:hover {
+        color: rgb(74, 74, 74);
+    }
+</style>
+
+</html>
